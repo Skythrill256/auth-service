@@ -15,8 +15,8 @@ func NewRepository(db *sql.DB) *Repository {
 }
 
 func (repo *Repository) CreateUser(user *models.User) error {
-	query := `INSERT INTO users(email,password,is_verified) VALUES($1,$2)`
-	err := repo.DB.QueryRow(query, user.Email, user.Password, user.IsVerified, user.GoogleID).Scan(&user.ID)
+	query := `INSERT INTO users(email,password) VALUES($1,$2) RETURNING id`
+	err := repo.DB.QueryRow(query, user.Email, user.Password).Scan(&user.ID)
 	if err != nil {
 		return err
 	}
