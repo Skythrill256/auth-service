@@ -1,3 +1,5 @@
+APP_NAME= main
+
 build:
 	@go build -o bin/$(APP_NAME) cmd/main/main.go
 
