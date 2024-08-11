@@ -22,6 +22,7 @@ type Config struct {
 	GoogleClientID     string
 	GoogleClientSecret string
 	GoogleRedirectURL  string
+	SMTP_KEY           string
 }
 
 func LoadConfig() *Config {
@@ -45,5 +46,6 @@ func LoadConfig() *Config {
 		GoogleClientID:     os.Getenv("GOOGLE_CLIENT_ID"),
 		GoogleClientSecret: os.Getenv("GOOGLE_CLIENT_SECRET"),
 		GoogleRedirectURL:  os.Getenv("GOOGLE_REDIRECT_URL"),
+		SMTP_KEY:           os.Getenv("SMTP_API_KEY"),
 	}
 }
