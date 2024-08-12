@@ -14,7 +14,7 @@ type UserDTO struct {
 func GenerateJWT(email string, secret string) (string, error) {
 	claims := jwt.MapClaims{}
 	claims["authorized"] = true
-	claims["user_id"] = email
+	claims["email"] = email
 	claims["exp"] = time.Now().Add(time.Minute * 30).Unix()
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 

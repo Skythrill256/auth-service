@@ -1,4 +1,3 @@
-
 package utils
 
 import (
@@ -14,23 +13,28 @@ func SendVerificationEmail(to string, token string, cfg *config.Config) error {
 	appPassword := cfg.SMTP_API_KEY
 
 	subject := "Email Verification"
-	body := fmt.Sprintf("Please verify your email by clicking on the link: %s/verify?token=%s", "http://localhost:"+cfg.AppPort, token)
+	body := fmt.Sprintf(`
+		<html>
+		<body>
+			<p>Please verify your email by clicking on the link:</p>
+			<a href="http://localhost:%s/verify-email?token=%s">Verify Email</a>
+		</body>
+		</html>
+	`, cfg.AppPort, token)
 
-	// Set up authentication information.
 	auth := smtp.PlainAuth("", from, appPassword, "smtp.gmail.com")
 
-	// Compose the email.
 	message := []byte(
 		"From: " + from + "\r\n" +
 			"To: " + to + "\r\n" +
 			"Subject: " + subject + "\r\n" +
+			"Content-Type: text/html; charset=\"UTF-8\"\r\n" +
 			"\r\n" +
 			body,
 	)
 
-	// Send the email.
 	err := smtp.SendMail(
-		"smtp.gmail.com:587", // SMTP server address and port.
+		"smtp.gmail.com:587",
 		auth,
 		from,
 		[]string{to},

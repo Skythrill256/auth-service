@@ -53,6 +53,7 @@ func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {
 
 }
 
+
 func (h *Handler) VerifyEmail(w http.ResponseWriter, r *http.Request) {
 	token := r.URL.Query().Get("token")
 	if token == "" {
@@ -65,8 +66,9 @@ func (h *Handler) VerifyEmail(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(map[string]string{"message": "Email Verified"})
+	json.NewEncoder(w).Encode(map[string]string{"message": "Email Verified Successfully"})
 }
 
 func (h *Handler) GoogleLogin(w http.ResponseWriter, r *http.Request) {

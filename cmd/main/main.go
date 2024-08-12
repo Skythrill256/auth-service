@@ -10,7 +10,6 @@ import (
 	"net/http"
 )
 
-
 func main() {
 	cfg := config.LoadConfig()
 

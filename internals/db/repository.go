@@ -50,6 +50,7 @@ func (repo *Repository) GetUserByEmail(email string) (*models.User, error) {
 	return &user, nil
 }
 
+
 func (repo *Repository) VerifyUserEmail(email string) error {
 	query := `UPDATE users SET is_verified = true, updated_at = CURRENT_TIMESTAMP WHERE email = $1`
 	_, err := repo.DB.Exec(query, email)
