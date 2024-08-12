@@ -10,7 +10,7 @@ import (
 
 func SendVerificationEmail(to string, token string, cfg *config.Config) error {
 	from := cfg.EmailSender
-	appPassword := cfg.SMTP_API_KEY
+	appPassword := cfg.EmailPass
 
 	subject := "Email Verification"
 	body := fmt.Sprintf(`
