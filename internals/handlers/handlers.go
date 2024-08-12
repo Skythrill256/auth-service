@@ -34,7 +34,7 @@ func (h *Handler) SignUpUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	w.WriteHeader(http.StatusCreated)
-	json.NewEncoder(w).Encode(map[string]string{"message": "User Registerd , Please verify your email"})
+	json.NewEncoder(w).Encode(map[string]string{"message": "User Registered, Please verify your email"})
 }
 
 func (h *Handler) Login(w http.ResponseWriter, r *http.Request) {

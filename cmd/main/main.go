@@ -10,6 +10,7 @@ import (
 	"net/http"
 )
 
+
 func main() {
 	cfg := config.LoadConfig()
 
@@ -35,4 +36,3 @@ func main() {
 	log.Println("Server is running on port", cfg.AppPort)
 	log.Fatal(http.ListenAndServe(":"+cfg.AppPort, router))
 }
-
